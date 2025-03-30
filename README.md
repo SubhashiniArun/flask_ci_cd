@@ -6,5 +6,5 @@
 4. add unit tests to test the APIs
 5. implement microservice architecture to call API from other service
 6. set up logger functionality
-7. deep dive into database connectivity (separating DB from APIs) and MySQL queries (join tables)
+7. deep dive into database connectivity (separating DB from APIs) and MySQL queries (join table)
 
