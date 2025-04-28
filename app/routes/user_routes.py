@@ -1,16 +1,11 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, current_app
 from sqlalchemy.exc import IntegrityError
-import os
-from dotenv import load_dotenv
 
 from ..services.user_service import fetch_users
 
 from ..models import db, User
 
 api_blueprint = Blueprint('api', __name__)
-
-load_dotenv()
-USER_SERVICE_URL = os.getenv("USER_SERVICE_URL")
 
 
 @api_blueprint.route("/", methods=['GET'])
@@ -46,27 +41,36 @@ def get_users():
 
 @api_blueprint.route('/users/<int:id>', methods=['GET'])
 def get_user(id):
-    user = User.query.get(id)
+    try:
+        user = User.query.get(id)
 
-    return jsonify(user=user.to_dict())
+        return jsonify(user=user.to_dict())
+    except AttributeError as e:
+        return jsonify({"error": f"User data is missing: {str(e)}"}), 500
 
 @api_blueprint.route("/users/<int:id>", methods=['PUT'])
 def update_user(id):
-    user = User.query.get(id)
+    try:
+        user = User.query.get(id)
 
-    data = request.get_json()
-    user.name = data.get('name', user.name)
-    user.email = data.get('email', user.email)
+        data = request.get_json()
+        user.name = data.get('name', user.name)
+        user.email = data.get('email', user.email)
 
-    db.session.commit()
+        db.session.commit()
 
-    return jsonify(message="User updated", user=user.to_dict())
+        return jsonify(message="User updated", user=user.to_dict())
+    except Exception as e:
+        return jsonify({"error": f"Error updating user data {str(e)}"})
 
 @api_blueprint.route("/users/<int:id>", methods=['DELETE'])
 def delete_user(id):
-    user = User.query.get(id)
+    try:
+        user = User.query.get(id)
 
-    db.session.delete(user)
-    db.session.commit()
+        db.session.delete(user)
+        db.session.commit()
 
-    return jsonify(message="User deleted")
+        return jsonify(message="User deleted")
+    except Exception as e:
+        return jsonify({"error": f"Error deleting user data {str(e)}"})
