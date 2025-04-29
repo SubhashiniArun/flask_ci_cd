@@ -1,3 +1,5 @@
+#  gitignore for python projects refer this link https://github.com/github/gitignore/blob/main/Python.gitignore
+
 # Environment variables
 .env
 
@@ -13,3 +15,7 @@ app/__pycache__/
 
 # # VS Code settings
 # .vscode/
+
+
+
+
