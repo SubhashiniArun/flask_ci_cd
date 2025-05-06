@@ -1,0 +1,6 @@
+[submodule "flask_ci_cd"]
+	path = flask_ci_cd
+	url = https://github.com/SubhashiniArun/flask_ci_cd
+[submodule "flask_service_ci_cd"]
+	path = flask_service_ci_cd
+	url = https://github.com/SubhashiniArun/flask_service_ci_cd
