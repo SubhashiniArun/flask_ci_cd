@@ -14,10 +14,12 @@ Setting up the App
 4. add unit tests to test the APIs
 5. implement microservice architecture to call API from other [service app link](https://github.com/SubhashiniArun/flask_service_ci_cd)
 6. set up logger functionality
-7. deep dive into database connectivity (separating DB from APIs) and MySQL queries (join table) 
+------------------------------------------------------------------------------------------------------
+7. deep dive into database connectivity (separating DB from APIs) and MySQL queries (complex queries - join multiples table) 
 8. set up RabbitMQ queue for aysnc/background processing
 9. deploy using CI/CD (Github Actions) to kubernetes 
 10. including AWS EC2, Serverless lambda, S3,
+11. Data analysis
 
 Developed and containerized a microservice using Docker, and deployed it on Kubernetes with CI/CD pipelines (GitHub Actions), automating build, test, and deployment processes to accelerate release cycles and enhance system reliability.
 
